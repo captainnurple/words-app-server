@@ -14,7 +14,7 @@ $name = $email = $gender = $comment = $website = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    if (empty($_POST["name"])) {
-     $nameErr = "Name is required";
+     $nameErr = "Nothing received";
    } else {
      $name = test_input($_POST["name"]);
      // check if name only contains letters and whitespace
@@ -37,6 +37,8 @@ function test_input($data) {
 <p><span class="error">* required field.</span></p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
    Phrase: <input type="text" name="name" value="<?php echo $name;?>">
+   <span class="error">* <?php echo $nameErr;?></span>
+   <br><br>   
    <input type="submit" name="submit" value="Submit"> 
 </form>
 
