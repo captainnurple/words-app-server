@@ -7,7 +7,7 @@
 </head>
 <body> 
 <?php
-echo sqlite_libversion();
+print_r(SQLite3::version());
 echo "<br>";
 echo phpversion();
 ?>
