@@ -6,7 +6,11 @@
 </style>
 </head>
 <body> 
-
+<?php
+echo sqlite_libversion();
+echo "<br>";
+echo phpversion();
+?>
 <?php
 // define variables and set to empty values
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
