@@ -14,7 +14,7 @@
    }
 
 
-    $phrase = mysql_real_escape_string('Oh hi baby I love you!!');
+    $phrase = sqlite_escape_string('Oh hi baby I love you!!');
 $query = <<<EOD
   INSERT INTO phrases VALUES ( '$phrase')
 EOD;
