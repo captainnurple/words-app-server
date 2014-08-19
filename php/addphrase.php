@@ -37,12 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    if (empty($_POST["phrase"])) {
      $phraseErr = "Nothing received";
    } else {
-     $phrase = test_input($_POST["phrase"]);     
+     $phrase = $_POST["phrase"];     
 
      $esc_phrase = SQLite3::escapeString($phrase);
      echo $esc_phrase . '\n';
 $query = <<<EOD
-  INSERT INTO phrases (phrase) VALUES ( '$phrase')
+  INSERT INTO phrases (phrase) VALUES ( '$esc_phrase')
 EOD;
      echo $query . '\n';
 
