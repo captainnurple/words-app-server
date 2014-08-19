@@ -40,10 +40,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      $phrase = test_input($_POST["phrase"]);     
 
      $esc_phrase = SQLite3::escapeString($phrase);
-     
+     echo $esc_phrase . '\n';
 $query = <<<EOD
   INSERT INTO phrases (phrase) VALUES ( '$phrase')
 EOD;
+     echo $query . '\n';
 
     $db->exec($query) or die("Unable to add phrase $phrase");
 
