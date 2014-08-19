@@ -14,7 +14,7 @@
    }
    
 $query = <<<EOD
-  CREATE TABLE IF NOT EXISTS phrases (
+  CREATE TABLE IF NOT EXISTS phrases(
     phrase TEXT)
 EOD;
 
@@ -22,7 +22,7 @@ EOD;
     $phrase = sanitize($_POST['Oh hi baby I love you!!']);
 
 $query = <<<EOD
-  INSERT INTO users VALUES ( '$phrase')
+  INSERT INTO phrases VALUES ( '$phrase')
 EOD;
 
     $db->exec($query) or die("Unable to add phrase $phrase");
