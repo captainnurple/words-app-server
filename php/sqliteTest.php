@@ -14,14 +14,14 @@
    }
 
 $query = <<<EOD
-  CREATE TABLE IF NOT EXISTS phrases (phrase TEXT)
+  CREATE TABLE IF NOT EXISTS phrases (rowid INTEGER PRIMARY KEY AUTOINCREMENT, phrase TEXT)
 EOD;
 
     $db->exec($query);
 
     $phrase = SQLite3::escapeString('Oh hi baby I love you!!');
 $query = <<<EOD
-  INSERT INTO phrases VALUES ( '$phrase')
+  INSERT INTO phrases (phrase) VALUES ( '$phrase')
 EOD;
 
     $db->exec($query) or die("Unable to add phrase $phrase");
@@ -29,7 +29,7 @@ EOD;
 
     while ($row = $result->fetchArray())
     {
-      echo "Phrase: {$row['phrase']}\n";
+      echo "Phrase: {$row['rowid']}\n - {$row['phrase']}\n";
     }
 
 ?>
