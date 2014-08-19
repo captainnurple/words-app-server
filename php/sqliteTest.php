@@ -13,6 +13,11 @@
       echo "Opened database successfully\n";
    }
 
+$query = <<<EOD
+  CREATE TABLE IF NOT EXISTS phrases (phrase TEXT)
+EOD;
+
+    $db->exec($query);
 
     $phrase = SQLite3::escapeString('Oh hi baby I love you!!');
 $query = <<<EOD
