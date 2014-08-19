@@ -29,7 +29,7 @@ EOD;
 
     while ($row = $result->fetchArray())
     {
-      echo "Phrase: {$row['rowid']}\n - {$row['phrase']}\n";
+      echo "Phrase: {$row['rowid']} - {$row['phrase']}\n";
     }
 
 ?>

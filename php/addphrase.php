@@ -1,3 +1,25 @@
+<?php
+   class MyDB extends SQLite3
+   {
+      function __construct()
+      {
+         $this->open('../db/test.db');
+      }
+   }
+   $db = new MyDB();
+   if(!$db){
+      echo $db->lastErrorMsg();
+   } else {
+      echo "Opened database successfully\n";
+   }
+
+$query = <<<EOD
+  CREATE TABLE IF NOT EXISTS phrases (rowid INTEGER PRIMARY KEY AUTOINCREMENT, phrase TEXT)
+EOD;
+
+    $db->exec($query);
+?>
+
 <!DOCTYPE HTML> 
 <html>
 <head>
@@ -7,24 +29,24 @@
 </head>
 <body> 
 <?php
-print_r(SQLite3::version());
-echo "<br>";
-echo phpversion();
-?>
-<?php
 // define variables and set to empty values
-$nameErr = $emailErr = $genderErr = $websiteErr = "";
-$name = $email = $gender = $comment = $website = "";
+$phraseErr = $emailErr = $genderErr = $websiteErr = "";
+$phrase = $email = $gender = $comment = $website = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   if (empty($_POST["name"])) {
-     $nameErr = "Nothing received";
+   if (empty($_POST["phrase"])) {
+     $phraseErr = "Nothing received";
    } else {
-     $name = test_input($_POST["name"]);
-     // check if name only contains letters and whitespace
-     if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-       $nameErr = "Only letters and white space allowed"; 
-     }
+     $phrase = test_input($_POST["phrase"]);     
+
+     $esc_phrase = SQLite3::escapeString($phrase);
+     
+$query = <<<EOD
+  INSERT INTO phrases (phrase) VALUES ( '$phrase')
+EOD;
+
+    $db->exec($query) or die("Unable to add phrase $phrase");
+
    }
 }
 
@@ -39,16 +61,30 @@ function test_input($data) {
 
 <h2>Send New Love Phrase</h2>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
-   Phrase: <input type="text" name="name" value="<?php echo $name;?>">
-   <span class="error">* <?php echo $nameErr;?></span>
+   Phrase: <input type="text" name="phrase" value="<?php echo $phrase;?>">
+   <span class="error">* <?php echo $phraseErr;?></span>
    <br><br>   
    <input type="submit" name="submit" value="Submit"> 
 </form>
 
 <?php
 echo "<h2>Successfully Input:</h2>";
-echo $name;
+    $result = $db->query('select * from phrases order by rowid desc limit 1') or die('Query failed');
+
+    while ($row = $result->fetchArray())
+    {
+      echo "{$row['rowid']} - {$row['phrase']}\n";
+    }
 echo "<br>";
+echo "<h2>Total List:</h2>";
+    $result = $db->query('SELECT * FROM phrases') or die('Query failed');
+
+    while ($row = $result->fetchArray())
+    {
+      echo "{$row['rowid']} - {$row['phrase']}\n";
+    }
+echo "<br>";
+
 ?>
 
 </body>
