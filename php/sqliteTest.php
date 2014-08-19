@@ -12,15 +12,9 @@
    } else {
       echo "Opened database successfully\n";
    }
-/*   
-$query = <<<EOD
-  CREATE TABLE IF NOT EXISTS phrases(
-    phrase TEXT)
-EOD;
 
-    $db->exec($query) or die('Create db failed');
-*/
-    $phrase = sanitize($_POST['Oh hi baby I love you!!']);
+
+    $phrase = mysql_real_escape_string('Oh hi baby I love you!!');
 $query = <<<EOD
   INSERT INTO phrases VALUES ( '$phrase')
 EOD;
