@@ -17,7 +17,7 @@
 	$dbh = new PDO($dir) or die("cannot open database");
 
     // construct db query filtering for index great than last received
-	$query = "SELECT (rowid, phrase) FROM phrases";
+	$query = "SELECT * FROM phrases";
 
     // test for content in json. if none return appropriate result
 
