@@ -3,7 +3,7 @@
    {
       function __construct()
       {
-         $this->open('../db/test.db');
+         $this->open('../db/phrases.sqlite');
       }
    }
    $db = new MyDB();
