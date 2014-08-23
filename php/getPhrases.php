@@ -1,13 +1,13 @@
 <?php    
-    $key = $_GET['key'];
+    // $key = $_GET['key'];
     
-    if ($key !== '6ForCM1pN370iAzDYTKXZIk47SlH3Yxu') {
-        echo 'die now';
-    } else {
-        echo 'live';
-    }
+    // if ($key !== '6ForCM1pN370iAzDYTKXZIk47SlH3Yxu') {
+    //     echo 'die now';
+    // } else {
+    //     echo 'live';
+    // }
     
-    $indexOfLastReceived = $_GET['indexOfLastReceived'];
+    // $indexOfLastReceived = $_GET['indexOfLastReceived'];
 
     // Instantiate PDO connection
     // Specify your sqlite database name and path //
