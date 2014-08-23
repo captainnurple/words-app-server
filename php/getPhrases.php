@@ -2,7 +2,8 @@
 
     var providedKey = $_GET['key'];
 
-    if (providedKey != '^Vi|lI1}1AP#G4Sh*f1<Daa0x+V0gJ') die();
+    if (providedKey !== '123') die();
     
+    echo 'here' . PHP_EOL;
     echo $_GET['latest']; 
 ?>
