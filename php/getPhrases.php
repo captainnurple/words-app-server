@@ -5,5 +5,9 @@
     $key = $_GET['key'];
     echo $key . PHP_EOL;
     
-    if ($key !== '123') echo 'die now';
+    if ($key !== '6ForCM1pN370iAzDYTKXZIk47SlH3Yxu') {
+        echo 'die now';
+    } else {
+        echo 'live';
+    }
 ?>
