@@ -1,6 +1,16 @@
 <?php    
-    // $key = $_GET['key'];
-    
+	$key;
+
+	// Set key manually if we're in command line mode
+	if (php_sapi_name() == "cli") {
+    // In cli-mode
+		echo 'In cli mode' . PHP_EOL;
+		$key = '6ForCM1pN370iAzDYTKXZIk47SlH3Yxu';
+	} else {
+	    // Not in cli-mode
+	    $key = $_GET['key'];
+	}    
+
     // if ($key !== '6ForCM1pN370iAzDYTKXZIk47SlH3Yxu') {
     //     echo 'die now';
     // } else {
