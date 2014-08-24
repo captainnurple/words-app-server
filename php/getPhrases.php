@@ -17,7 +17,7 @@
     //     echo 'live';
     // }
     
-    // $indexOfLastReceived = $_GET['indexOfLastReceived'];
+    $indexOfLastReceived = $_GET['indexOfLastReceived'];
 
     // Instantiate PDO connection
     // Specify your sqlite database name and path //
@@ -27,17 +27,19 @@
 	$dbh = new PDO($dir) or die("cannot open database");
 
     // construct db query filtering for index great than last received
-	$query = "SELECT rowid, phrase FROM phrases WHERE rowid > 2 ORDER BY rowid";
+	$sql = "SELECT rowid, phrase FROM phrases WHERE rowid > ? ORDER BY rowid";
+	$query = $dbh->prepare($sql);
 
     // test for content in json. if none return appropriate result
 
     // dump results into appropriate json and ret 
     	// Iterate through the results and pass into JSON encoder //
 	$results = array();
-	foreach ($dbh->query($query) as $row) {
+//	foreach ($dbh->query($query) as $row) {
+	foreach ($query->execute(array($indexOfLastReceived) as $row) {
 		$results[] = array('rowid' => $row['rowid'], 'phrase' => $row['phrase']);
 	}
-		
+
 	echo json_encode($results);
 
 ?>
