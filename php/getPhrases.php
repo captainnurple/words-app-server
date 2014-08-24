@@ -33,8 +33,11 @@
 
     // dump results into appropriate json and ret 
     	// Iterate through the results and pass into JSON encoder //
+	$results = array();
 	foreach ($dbh->query($query) as $row) {
-		echo json_encode(array('rowid' => $row['rowid'], 'phrase' => $row['phrase']));
+		$results[] = array('rowid' => $row['rowid'], 'phrase' => $row['phrase']);
 	}
+		
+	echo json_encode($results);
 
 ?>
