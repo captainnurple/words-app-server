@@ -31,14 +31,15 @@
     // construct db query filtering for index great than last received
 	$sql = "SELECT rowid, phrase FROM phrases WHERE rowid > ? ORDER BY rowid";
 	$query = $dbh->prepare($sql);
-
+	$query->execute(array($indexOfLastReceived));
+	$result = $query->fetchAll();
     // test for content in json. if none return appropriate result
 
     // dump results into appropriate json and ret 
     	// Iterate through the results and pass into JSON encoder //
 	$results = array();
 //	foreach ($dbh->query($query) as $row) {
-	foreach ($query->execute(array($indexOfLastReceived)) as $row) {
+	foreach ($result as $row) {
 		$results[] = array('rowid' => $row['rowid'], 'phrase' => $row['phrase']);
 	}
 
