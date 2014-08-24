@@ -36,7 +36,7 @@
     	// Iterate through the results and pass into JSON encoder //
 	$results = array();
 //	foreach ($dbh->query($query) as $row) {
-	foreach ($query->execute(array($indexOfLastReceived) as $row) {
+	foreach ($query->execute(array($indexOfLastReceived)) as $row) {
 		$results[] = array('rowid' => $row['rowid'], 'phrase' => $row['phrase']);
 	}
 
