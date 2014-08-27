@@ -14,7 +14,7 @@
    }
 
 $query = <<<EOD
-  CREATE TABLE IF NOT EXISTS phrases (rowid INTEGER PRIMARY KEY AUTOINCREMENT, phrase TEXT)
+  CREATE TABLE IF NOT EXISTS phrases (rowid INTEGER PRIMARY KEY AUTOINCREMENT, phrase TEXT, date TEXT)
 EOD;
 
     $db->exec($query);
@@ -41,8 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
      $esc_phrase = SQLite3::escapeString($phrase);
      echo $esc_phrase . '\n';
+     $createdDate = date('F jS, Y');
 $query = <<<EOD
-  INSERT INTO phrases (phrase) VALUES ( '$esc_phrase')
+  INSERT INTO phrases (phrase, date) VALUES ('$esc_phrase', '$createdDate')
 EOD;
      echo $query . '\n';
 
