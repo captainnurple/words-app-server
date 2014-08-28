@@ -29,7 +29,7 @@
 	$dbh = new PDO($dir) or die("cannot open database");
 
     // construct db query filtering for index great than last received
-	$sql = "SELECT rowid, phrase FROM phrases WHERE rowid > ? ORDER BY rowid";
+	$sql = "SELECT rowid, phrase, date FROM phrases WHERE rowid > ? ORDER BY rowid";
 	$query = $dbh->prepare($sql);
 	$query->execute(array($indexOfLastReceived));
 	$result = $query->fetchAll();
@@ -40,7 +40,7 @@
 	$results = array();
 //	foreach ($dbh->query($query) as $row) {
 	foreach ($result as $row) {
-		$results[] = array('rowid' => $row['rowid'], 'phrase' => $row['phrase']);
+		$results[] = array('rowid' => $row['rowid'], 'phrase' => $row['phrase'], 'date' => $row['date']);
 	}
 
 	echo json_encode($results);
