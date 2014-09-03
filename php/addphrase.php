@@ -68,7 +68,7 @@ function test_input($data) {
 ?>
 
 <h2>Send New Love Phrase</h2>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . $security_key;?>"> 
    Phrase: <input type="text" name="phrase" value="<?php echo $phrase;?>">
    <span class="error">* <?php echo $phraseErr;?></span>
    <br><br>   
