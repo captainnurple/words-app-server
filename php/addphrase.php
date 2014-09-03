@@ -1,4 +1,10 @@
 <?php
+
+  $security_key = $_GET['key'];
+
+  if($security_key != 'eMaca884F01L9WZ9iFLqGEgKKkR3NbY7') die();
+
+
    class MyDB extends SQLite3
    {
       function __construct()
