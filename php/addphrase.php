@@ -2,7 +2,10 @@
 
   $security_key = $_GET['key'];
 
-  if($security_key != 'eMaca884F01L9WZ9iFLqGEgKKkR3NbY7') die();
+  require_once("/var/credentials.php"); // contains $secret_key
+
+  if($security_key != $secret_key) die();
+//  if($security_key != 'eMaca884F01L9WZ9iFLqGEgKKkR3NbY7') die();
 
 
    class MyDB extends SQLite3
